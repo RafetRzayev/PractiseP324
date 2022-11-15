@@ -81,12 +81,13 @@
                                 </li>
                                 <li>
                                     <div class="dropdown">
-                                        <button type="button" id="langue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/assets/images/flag/1.jpg" alt=""> English <i class="icon ion-chevron-down"></i></button>
+                                        @await Component.InvokeAsync("Language")
+                                        @*<button type="button" id="langue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/assets/images/flag/1.jpg" alt=""> English <i class="icon ion-chevron-down"></i></button>
 
                                         <ul class="dropdown-menu" aria-labelledby="langue">
                                             <li><a asp-controller="languages" asp-action="ChangeLangugage" asp-route-culture="en-US"><img src="~/assets/images/flag/1.jpg" alt=""> English</a></li>
                                             <li><a asp-controller="languages" asp-action="ChangeLangugage" asp-route-culture="az"><img src="~/assets/images/flag/azerbaijan.jpg" alt=""> Azerbaijan</a></li>
-                                        </ul>
+                                        </ul>*@
                                     </div>
                                 </li>
                             </ul>
