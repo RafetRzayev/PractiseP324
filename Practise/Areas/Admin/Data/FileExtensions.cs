@@ -18,6 +18,9 @@ namespace Practise.Areas.Admin.Data
 
         public async static Task<string> GenerateFile(this IFormFile file, string path)
         {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
             var unicalName = $"{Guid.NewGuid()}-{file.FileName}";
 
             using FileStream fs = new (Path.Combine(path, unicalName), FileMode.Create);

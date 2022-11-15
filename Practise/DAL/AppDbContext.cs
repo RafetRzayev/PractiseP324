@@ -11,5 +11,7 @@ namespace Practise.DAL
         }
 
         public DbSet<Language> Languages { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }
