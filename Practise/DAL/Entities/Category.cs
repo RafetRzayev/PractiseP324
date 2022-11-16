@@ -10,5 +10,6 @@ namespace Practise.DAL.Entities
         public Category Parent { get; set; }
         public int? ParentId { get; set; }
         public ICollection<Category> Children { get; set; }
+        public ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }

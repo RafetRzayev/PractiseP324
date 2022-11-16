@@ -5,5 +5,6 @@
         public static string RootPath;
         public static string FlagPath;
         public static string CategoryPath;
+        public static string ProductPath;
     }
 }

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Practise.Areas.Admin.Data;
+using Practise.Areas.Admin.Services;
 using Practise.DAL;
 using Practise.Services;
 
@@ -20,9 +21,12 @@ namespace Practise
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            builder.Services.AddScoped<CategoryService>();
+
             Constants.RootPath = builder.Environment.WebRootPath;
             Constants.FlagPath = Path.Combine(Constants.RootPath, "assets", "images", "flag");
             Constants.CategoryPath = Path.Combine(Constants.RootPath, "assets", "images", "category");
+            Constants.ProductPath = Path.Combine(Constants.RootPath, "assets", "images", "product");
 
             var app = builder.Build();
 
