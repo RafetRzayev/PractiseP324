@@ -5,6 +5,7 @@ using Practise.Areas.Admin.Data;
 using Practise.Areas.Admin.Models;
 using Practise.DAL;
 using Practise.DAL.Entities;
+using Practise.Data;
 
 namespace Practise.Areas.Admin.Controllers
 {

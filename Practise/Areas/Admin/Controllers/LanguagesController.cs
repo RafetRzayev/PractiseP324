@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Practise.Areas.Admin.Data;
 using Practise.Areas.Admin.Models;
 using Practise.DAL;
+using Practise.Data;
 
 namespace Practise.Areas.Admin.Controllers
 {

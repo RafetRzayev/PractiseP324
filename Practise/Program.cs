@@ -1,15 +1,17 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Practise.Areas.Admin.Data;
 using Practise.Areas.Admin.Services;
 using Practise.DAL;
+using Practise.DAL.Entities;
+using Practise.Data;
 using Practise.Services;
 
 namespace Practise
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +20,27 @@ namespace Practise
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+                    builder =>
+                    {
+                        builder.MigrationsAssembly(nameof(Practise));
+                    });
             });
 
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Lockout.MaxFailedAccessAttempts = 2;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
             builder.Services.AddScoped<CategoryService>();
+            builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AdminUser"));
 
             Constants.RootPath = builder.Environment.WebRootPath;
             Constants.FlagPath = Path.Combine(Constants.RootPath, "assets", "images", "flag");
@@ -41,9 +60,17 @@ namespace Practise
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
-            app.UseAuthentication();
+            using (var scope = app.Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
 
+                var dataInitalizer = new DataInitializer(serviceProvider);
+                await dataInitalizer.SeedData();
+            }
+
+            app.UseRouting();
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
@@ -63,7 +90,7 @@ namespace Practise
                );
             });
 
-            app.Run();
+            await app.RunAsync();
         }
     }
 }

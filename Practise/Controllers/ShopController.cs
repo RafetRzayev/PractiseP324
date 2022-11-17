@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Practise.DAL;
 using Practise.Models;
@@ -42,6 +43,12 @@ namespace Practise.Controllers
             };
 
             return View(model);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> AddProductToWishList(int productId)
+        {
+            return RedirectToAction(nameof(Index));
         }
     }
 }
