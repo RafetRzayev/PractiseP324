@@ -12,8 +12,8 @@ using Practise.DAL;
 namespace Practise.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221121173422_AddContactMessage")]
-    partial class AddContactMessage
+    [Migration("20221122101811_AddAll")]
+    partial class AddAll
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
