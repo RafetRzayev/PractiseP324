@@ -1,16 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using Practise.DAL;
 
 namespace Practise.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        public HomeController()
+        public HomeController(AppDbContext dbContext) : base(dbContext)
         {
         }
 
         public IActionResult Index()
         {
+            var language = Language;
+            
             return View();
         }
     }

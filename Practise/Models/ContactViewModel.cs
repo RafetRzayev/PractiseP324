@@ -4,10 +4,10 @@ namespace Practise.Models
 {
     public class ContactViewModel
     {
-        public ContactMessage ContactMessage { get; set; }
+        public ContactMessageViewModel ContactMessage { get; set; } = new();
     }
 
-    public class ContactMessage
+    public class ContactMessageViewModel
     {
         public string Name { get; set; }
         public string? Subject { get; set; }

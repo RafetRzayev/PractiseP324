@@ -1,0 +1,45 @@
+﻿@model UserUpdateViewModel
+<div class="row col-sm-6">
+    <div class="col-sm-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"> Update user</h4>
+                <form class="forms-sample" method="post" asp-action="Update">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Firstname">Firstname</label>
+                        <input asp-for="Firstname" class="form-control" placeholder="Firstname">
+                        <span asp-validation-for="Firstname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Lastname">Lastname</label>
+                        <input asp-for="Lastname" class="form-control" placeholder="Lastname">
+                        <span asp-validation-for="Lastname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Username">Username</label>
+                        <input asp-for="Username" class="form-control" placeholder="Username">
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CurrentRole">CurrentRole</label>
+                        <input asp-for="CurrentRole" class="form-control" placeholder="CurrentRole">
+                        <span asp-validation-for="CurrentRole" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Role">Roles</label>
+                        <select asp-for="Role" asp-items="Model?.Roles" class="form-control" placeholder="Role secin"></select>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light" asp-action="Index">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

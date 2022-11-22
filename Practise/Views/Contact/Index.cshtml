@@ -1,6 +1,6 @@
-﻿@{
-    ContactViewModel model = Model;
-    var contactMessage = model.ContactMessage;
+﻿@model ContactViewModel;
+@{
+    var contactMessage = Model.ContactMessage;
 }
 <!--====== Breadcrumb Part Start ======-->
 
@@ -24,32 +24,32 @@
             <div class="col-lg-7 col-xl-8">
                 <div class="contact-form mt-30">
                     <h4 class="allup-title">Billing Address</h4>
-                    <form id="contact-form" action="https://demo.hasthemes.com/allup/allup/assets/contact.php" method="POST">
+                    <form  asp-action="AddMessage" method="POST">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="single-form">
-                                    <input type="text" name="name" placeholder="Your Name" value="@contactMessage.Name">
+                                    <input asp-for="ContactMessage.Name" name="name" placeholder="Your Name" value="@contactMessage.Name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="single-form">
-                                    <input type="email" name="email" placeholder="Your Email" value="@contactMessage.Email">
+                                    <input asp-for="ContactMessage.Email" name="email" placeholder="Your Email" value="@contactMessage.Email">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="single-form">
-                                    <input type="text" name="subject" placeholder="Subject">
+                                    <input asp-for="ContactMessage.Subject" name="subject" placeholder="Subject">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="single-form">
-                                    <textarea name="message" placeholder="Your Message"></textarea>
+                                    <textarea asp-for="ContactMessage.Message" name="message" placeholder="Your Message"></textarea>
                                 </div>
                             </div>
                             <p class="form-message"></p>
                             <div class="col-md-12">
                                 <div class="single-form">
-                                    <button class="main-btn main-btn-2">Send Message</button>
+                                    <button type="submit" class="main-btn main-btn-2">Send Message</button>
                                 </div>
                             </div>
                         </div>
