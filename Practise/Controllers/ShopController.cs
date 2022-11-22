@@ -36,10 +36,13 @@ namespace Practise.Controllers
                     return NotFound();
             }
 
+            var products = await _dbContext.Products.ToListAsync();
+
             var model = new ShopViewModel
             {
                 SelectedCategory = selectedCategory,
-                Categories = mainCategories
+                Categories = mainCategories,
+                Products = products
             };
 
             return View(model);

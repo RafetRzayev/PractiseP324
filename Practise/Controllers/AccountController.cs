@@ -78,7 +78,7 @@ namespace Practise.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        public IActionResult Login(string returnUrl)
+        public IActionResult Login(string? returnUrl)
         {
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }

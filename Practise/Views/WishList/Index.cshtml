@@ -1,0 +1,103 @@
+﻿@model List<WishListViewModel>
+<!--====== Breadcrumb Part Start ======-->
+
+<div class="breadcrumb-area">
+    <div class="container-fluid custom-container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active">Wishlist</li>
+            </ol>
+        </nav>
+    </div> <!-- container -->
+</div>
+
+<!--====== Breadcrumb Part Ends ======-->
+<!--====== Wishlist Part Start ======-->
+
+<section class="wishlist-page pt-10">
+    <div class="container-fluid custom-container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="wishlist mt-30">
+                    <div class="shopping-cart-table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="image">Image</th>
+                                    <th class="product">Product</th>
+                                    <th class="price">Price</th>
+                                    <th class="quantity">Discount</th>
+                                    <th class="total">Total</th>
+                                    <th class="delete">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id=@(item.Id+"tr")>
+                                        <td>
+                                            <div class="product-image">
+                                                <img style="width:50px;height:50px" src="~/assets/images/product/@item.ImageUrl" alt="cart">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product-title">
+                                                <h4 class="title"><a href="single-product.html">@item.Name</a></h4>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product-price">
+                                                <span class="price">€@item.Price</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product-price">
+                                                <span class="price">€@item.Discount</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product-total">
+                                                <span class="total-amount">€@item.DiscountedPrice</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="product-delete">
+                                                <a id="productLink">
+                                                    <input type="hidden" id="productId" value="@item.Id">
+                                                    <i class="fal fa-trash-alt"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--====== Wishlist Part Ends ======-->
+@section Scripts{
+    <script>
+        $(document).on('click', '#productLink', function () {
+            var productId = $(this).children("#productId").val();
+            $.ajax({
+                type: "POST",
+                url: "/WishList/DeleteProductFromWishList",
+                data: { productId: productId },
+                success: function () {
+                    $("#" + productId + "tr").remove();
+                },
+                Error: function () {
+                    alert("fgfhj");
+                }
+            });
+        });
+
+    </script>
+}

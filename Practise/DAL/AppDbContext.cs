@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Practise.DAL.Entities;
+using System.Data;
 
 namespace Practise.DAL
 {
@@ -19,7 +20,9 @@ namespace Practise.DAL
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
 
-        public DbSet<Test> Tests { get; set; }
-        public DbSet<Test2> G { get; set; }
+        public DbSet<WishList> WishList { get; set; }
+        public DbSet<WishListProduct> WishListProduct { get; set; }
+
+        public DbSet<ContactMessage> ContactMessages { get; set; }
     }
 }

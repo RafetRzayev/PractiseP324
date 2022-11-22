@@ -11,5 +11,6 @@
         public string Brand { get; set; }
         public ICollection<ProductImage> ProductImages { get; set; }
         public ICollection<ProductCategory> ProductCategories { get; set; }
+        public ICollection<WishListProduct> WishListProducts { get; set; }
     }
 }
